@@ -1,0 +1,180 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #5f9ea0;
+}
+
+header {
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 40px;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+main {
+    padding: 20px;
+}
+
+.top-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.overview, .student-info {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+}
+
+.view-options {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.view-options span {
+    color: #888;
+    cursor: pointer;
+}
+
+.view-options .active {
+    color: #5f9ea0;
+    border-bottom: 2px solid #5f9ea0;
+}
+
+.attendance-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.attendance-bar {
+    background-color: #eee;
+    height: 10px;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.progress {
+    background-color: #5f9ea0;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.semester-selector {
+    margin-bottom: 20px;
+}
+
+.semester-selector select {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.course-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.course-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+}
+
+.course-code {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ff7f50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.theory-practical {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.attendance-chart {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.chart-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(#5f9ea0 72%, #eee 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-circle {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.percentage {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 14px;
+}
+
+.attendance-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.attendance-info span {
+    margin-left: auto;
+}
