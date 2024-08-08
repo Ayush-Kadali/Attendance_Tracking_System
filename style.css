@@ -10,6 +10,7 @@ body {
 
 .container {
 	background-color: rgba(255, 255, 255, 0.6);
+	overflow: auto;
 	padding: 40px;
 	border-radius: 5px;
 	text-align: center;
@@ -53,6 +54,8 @@ button[type="submit"] {
 }
 
 .para {
+	position: relative;
+	width: 400px;
 	margin: 16px 50px;
 	text-align: center;
 	max-width: 400px;
