@@ -1,4 +1,14 @@
+<?php
+session_start();
 
+// Check if user is logged in
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+
+$user = $_SESSION['user'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,21 +22,13 @@
     <header>
         <img src="logo.png" alt="MIT World Peace University Logo" class="logo">
         <h1>ATS</h1>
-        <div class="user-controls">
-            <i class="bi bi-search"></i>
-            <i class="bi bi-arrow-clockwise"></i>
-            <i class="bi bi-gear"></i>
-            <i class="bi bi-person-circle"></i>
-        </div>
+            <a href="logout.php" class="logout-btn">Logout</a>
     </header>
 
     <main>
         <div class="top-section">
             <section class="overview">
                 <div class="view-options">
-                    <span class="active">Semester View</span>
-                    <span>Month View</span>
-                    <span>Week View</span>
                 </div>
                 <div class="attendance-summary">
                     <div class="stat">
@@ -56,27 +58,21 @@
                 </div>
                 <span class="attendance-percentage">79.28%</span>
             </section>
-
+            
             <section class="student-info">
-                <h2>Name : Ayush Kadali</h2>
-                <h2>PRN : 1032232229</h2>
-                <h2>Roll No : 54</h2>
-                <h2>Year : Second Year</h2>
-                <h2>Course : B.Tech Computer Science Engineering(AI & DS)</h2>
+                <h2>Name: <?php echo htmlspecialchars($user['name']); ?></h2>
+                <h2>PRN: <?php echo htmlspecialchars($user['prn']); ?></h2>
+                <h2>Roll No: <?php echo htmlspecialchars($user['roll_no']); ?></h2>
+                <h2>Year: <?php echo htmlspecialchars($user['year']); ?></h2>
+                <h2>Course: <?php echo htmlspecialchars($user['course']); ?></h2>
             </section>
         </div>
 
-        <div class="semester-selector">
-            <select>
-                <option>B.Tech. CSE aids 2024 (Semester III)</option>
-            </select>
-        </div>
 
         <section class="course-details">
-            <!-- Reapeating block just used for html showing, will change it to function or something and embed with js. -->
             <div class="course-card">
                 <h3>Fundamentals of Data Structure</h3>
-                <span class="course-code">FDS</span>
+                <a href="tablebutton.html"><span class="course-code"><input type="button" value="FDS"></span></a>
                 <div class="theory-practical">
                     <span>Theory</span>
                     <span>Practical</span>
@@ -95,9 +91,10 @@
                     <p><i class="bi bi-x-circle"></i> Absent <span>1</span></p>
                 </div>
             </div>
+            
             <div class="course-card">
                 <h3>Database Management Systems</h3>
-                <span class="course-code">DBMS</span>
+                <a href="tablebutton.html"><span class="course-code"><input type="button" value="DBMS"></span></a>
                 <div class="theory-practical">
                     <span>Theory</span>
                     <span>Practical</span>
@@ -116,9 +113,10 @@
                     <p><i class="bi bi-x-circle"></i> Absent <span>1</span></p>
                 </div>
             </div>
+            
             <div class="course-card">
                 <h3>Project Based Learning</h3>
-                <span class="course-code">PBL</span>
+                <a href="tablebutton.html"><span class="course-code"><input type="button" value="PBL"></span></a>
                 <div class="theory-practical">
                     <span>Theory</span>
                     <span>Practical</span>
@@ -137,7 +135,6 @@
                     <p><i class="bi bi-x-circle"></i> Absent <span>0</span></p>
                 </div>
             </div>
-            <!-- End of repeating block -->
         </section>
     </main>
 </body>
