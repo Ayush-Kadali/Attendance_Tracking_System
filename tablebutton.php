@@ -64,7 +64,6 @@ $attendance_percentage = $total_lectures > 0 ?
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <title><?php echo htmlspecialchars($subject['subject_name']); ?> - Attendance</title>
     <style>
         body {
