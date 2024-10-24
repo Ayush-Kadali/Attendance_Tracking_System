@@ -5,32 +5,42 @@ $connection = mysqli_connect("localhost", "root", "", "attendance_system");
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$prn = mysqli_real_escape_string($connection, $_POST['prn']);
-$password = $_POST['password'];
+$error = "";
 
-// Query to check credentials
-$query = "SELECT * FROM students WHERE prn = ?";
-$stmt = mysqli_prepare($connection, $query);
-mysqli_stmt_bind_param($stmt, "s", $prn);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $prn = mysqli_real_escape_string($connection, $_POST['prn']);
+    $password = $_POST['password'];
 
-if (mysqli_num_rows($result) == 1) {
-    $row = mysqli_fetch_assoc($result);
+    // Query to check credentials
+    $query = "SELECT * FROM students WHERE prn = ?";
+    $stmt = mysqli_prepare($connection, $query);
+    
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $prn);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-    if ($password === $row['password']) {
-        $_SESSION['user'] = $row;
-        header("Location: dashboard.php");
-        exit();
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+
+            // Check password
+            if ($password === $row['password']) {
+                $_SESSION['user'] = $row;
+                header("Location: dashboard.php");
+                exit();
+            } else {
+                $error = "Wrong Password";
+            }
+        } else {
+            $error = "PRN not found!";
+        }
+        
+        // Close the prepared statement
+        mysqli_stmt_close($stmt);
     } else {
-        $error = "Wrong Password";
+        $error = "Database query error: " . mysqli_error($connection);
     }
-} else {
-    $error = "PRN not found!";
 }
-
-// Close the prepared statement
-mysqli_stmt_close($stmt);
 ?>
 
 <!DOCTYPE html>
