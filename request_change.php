@@ -14,7 +14,6 @@ $reason = $_POST['reason'] ?? '';
 $prn = $_SESSION['user']['prn'];
 
 try {
-    // First get the attendance ID
     $stmt = $pdo->prepare("
         SELECT id, status 
         FROM attendance 
@@ -27,7 +26,6 @@ try {
         throw new Exception('Attendance record not found');
     }
 
-    // Check if there's already a pending request
     $stmt = $pdo->prepare("
         SELECT id 
         FROM attendance_requests 
@@ -38,7 +36,6 @@ try {
         throw new Exception('A request is already pending for this attendance');
     }
 
-    // Insert the request
     $stmt = $pdo->prepare("
         INSERT INTO attendance_requests 
         (attendance_id, prn, requested_status, reason) 
@@ -56,6 +53,5 @@ try {
     $_SESSION['error_message'] = $e->getMessage();
 }
 
-// Redirect back to the subject attendance page
 header("Location: subject_attendance.php?code=" . urlencode($subject_code));
 exit();
