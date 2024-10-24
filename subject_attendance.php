@@ -5,7 +5,6 @@ requireLogin();
 $user = $_SESSION['user'];
 $subject_code = $_GET['code'] ?? '';
 
-// Validate subject code
 $stmt = $pdo->prepare("SELECT * FROM subjects WHERE subject_code = ?");
 $stmt->execute([$subject_code]);
 $subject = $stmt->fetch();
@@ -15,7 +14,6 @@ if (!$subject) {
     exit();
 }
 
-// Get attendance for date range
 $start_date = $_GET['from'] ?? date('Y-m-d', strtotime('-30 days'));
 $end_date = $_GET['to'] ?? date('Y-m-d');
 
@@ -83,7 +81,6 @@ $stmt = $pdo->prepare($attendance_query);
 $stmt->execute([$user['prn'], $subject_code, $start_date, $end_date]);
 $attendance_records = $stmt->fetchAll();
 
-// Calculate summary statistics
 $total_present = 0;
 $total_absent = 0;
 foreach ($attendance_records as $record) {
@@ -191,7 +188,6 @@ $attendance_percentage = $total_lectures > 0 ? round(($total_present / $total_le
             </table>
         </div>
 
-        <!-- Modal for attendance change request -->
         <div id="requestModal" class="modal">
             <div class="modal-content">
                 <h2>Request Attendance Change</h2>
@@ -225,7 +221,6 @@ $attendance_percentage = $total_lectures > 0 ? round(($total_present / $total_le
         document.getElementById('requestModal').style.display = 'none';
     }
 
-    // Close modal when clicking outside
     window.onclick = function(event) {
         const modal = document.getElementById('requestModal');
         if (event.target == modal) {

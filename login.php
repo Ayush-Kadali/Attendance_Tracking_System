@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prn = mysqli_real_escape_string($connection, $_POST['prn']);
     $password = $_POST['password'];
 
-    // Query to check credentials
     $query = "SELECT * FROM students WHERE prn = ?";
     $stmt = mysqli_prepare($connection, $query);
     
@@ -35,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "PRN not found!";
         }
         
-        // Close the prepared statement
         mysqli_stmt_close($stmt);
     } else {
         $error = "Database query error: " . mysqli_error($connection);

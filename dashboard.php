@@ -5,7 +5,6 @@ requireLogin();
 $user = $_SESSION['user'];
 $prn = $user['prn'];
 
-// Function to get attendance statistics for a subject
 function getSubjectAttendance($pdo, $prn, $subject_code) {
     $query = "
         SELECT 
@@ -31,7 +30,6 @@ function getSubjectAttendance($pdo, $prn, $subject_code) {
     ];
 }
 
-// Get overall attendance statistics
 $overall_query = "
     SELECT 
         COUNT(*) as total_lectures,
@@ -47,7 +45,6 @@ $overall_percentage = $overall_stats['total_lectures'] > 0
     ? round(($overall_stats['present_count'] / $overall_stats['total_lectures']) * 100, 2) 
     : 0;
 
-// Get all subjects for the student's year and course
 $subjects_query = "
     SELECT * FROM subjects 
     WHERE year = ? AND course = ?

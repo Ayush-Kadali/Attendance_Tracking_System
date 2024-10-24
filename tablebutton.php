@@ -5,10 +5,8 @@ requireLogin();
 $user = $_SESSION['user'];
 $prn = $user['prn'];
 
-// Get subject code from URL parameter
 $subject_code = isset($_GET['code']) ? $_GET['code'] : '';
 
-// Validate subject exists
 $subject_query = "SELECT * FROM subjects WHERE subject_code = ?";
 $stmt = $pdo->prepare($subject_query);
 $stmt->execute([$subject_code]);
@@ -19,11 +17,9 @@ if (!$subject) {
     exit;
 }
 
-// Get date range (default to last 30 days if not specified)
 $end_date = isset($_GET['to']) ? $_GET['to'] : date('Y-m-d');
 $start_date = isset($_GET['from']) ? $_GET['from'] : date('Y-m-d', strtotime($end_date . ' -30 days'));
 
-// Get attendance data
 $attendance_query = "
     SELECT 
         DATE(date) as date,
@@ -47,7 +43,6 @@ $stmt = $pdo->prepare($attendance_query);
 $stmt->execute([$prn, $subject_code, $start_date, $end_date]);
 $attendance_records = $stmt->fetchAll();
 
-// Calculate total statistics
 $total_present = 0;
 $total_absent = 0;
 foreach ($attendance_records as $record) {

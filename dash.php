@@ -65,8 +65,6 @@ $user = $_SESSION['user'];
                         </div>
                         <span class="attendance-percentage">79.28%</span>
                     </section>
-                
-                <!-- ... rest of your existing dashboard HTML ... -->
             </div>
 
             <div class="section student-info">
@@ -85,7 +83,6 @@ $user = $_SESSION['user'];
         </div>
 
         <section class="course-details">
-            <!-- Reapeating block just used for html showing, will change it to function or something and embed with js. -->
             <div class="course-card">
                 <h3>Fundamentals of Data Structure</h3>
                 <a href="tablebutton.html"><span class="course-code"><input type ="button" value="FDS"></span></a>
@@ -150,7 +147,6 @@ $user = $_SESSION['user'];
                     <p><i class="bi bi-x-circle"></i> Absent <span>0</span></p>
                 </div>
             </div>
-        <!-- ... rest of your existing dashboard content ... -->
     </main>
 </body>
 </html>
